@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BotBridge - Automation Platform</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #243044;
+    background: #f2f5f8;
+}
+
+header {
+    background: #123c69;
+    color: white;
+    text-align: center;
+    padding: 24px 16px;
+}
+
+header h1 {
+    margin: 0 0 8px;
+}
+
+header p {
+    margin: 0;
+}
+
+nav {
+    background: #0b2948;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 9px 16px;
+    border-radius: 5px;
+    transition: background .3s, transform .3s;
+}
+
+nav a:hover {
+    background: #2d6598;
+    transform: translateY(-2px);
+}
+
+.page-layout {
+    max-width: 1250px;
+    margin: 24px auto;
+    padding: 0 18px;
+    display: grid;
+    grid-template-columns: 190px minmax(0, 1fr) 190px;
+    gap: 20px;
+    align-items: start;
+}
+
+.sidebar, .advertisement, .content-card {
+    background: white;
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.08);
+}
+
+.sidebar h3, .advertisement h3 {
+    color: #123c69;
+    margin-top: 0;
+}
+
+.sidebar a {
+    display: block;
+    color: #345;
+    text-decoration: none;
+    padding: 9px 4px;
+    border-bottom: 1px solid #e6ebf0;
+}
+
+.sidebar a:hover {
+    color: #1476b8;
+}
+
+.advertisement {
+    text-align: center;
+}
+
+.ad-box {
+    min-height: 230px;
+    display: grid;
+    place-items: center;
+    padding: 15px;
+    border-radius: 8px;
+    color: white;
+    background: linear-gradient(145deg, #1c5688, #72a9c9);
+}
+
+.ad-box strong {
+    font-size: 22px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+main {
+    min-width: 0;
+}
+
+.content-card {
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #123c69;
+    text-align: center;
+    margin: 4px 0 10px;
+}
+
+.description {
+    text-align: center;
+    color: #627084;
+    line-height: 1.5;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.gallery-item {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,.10);
+    transition: transform .35s, box-shadow .35s;
+}
+
+.gallery-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 9px 20px rgba(0,0,0,.18);
+}
+
+.gallery-item img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    display: block;
+    transition: transform .6s, filter .6s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+    filter: brightness(1.08);
+}
+
+.gallery-item h3 {
+    text-align: center;
+    color: #123c69;
+    padding: 13px;
+    margin: 0;
+}
+
+footer {
+    background: #123c69;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    margin-top: 30px;
+}
+
+footer p {
+    margin: 4px;
+}
+
+@media (max-width: 900px) {
+    .page-layout {
+        grid-template-columns: 170px minmax(0, 1fr);
+    }
+
+    .advertisement {
+        grid-column: 1 / -1;
+    }
+
+    .ad-box {
+        min-height: 120px;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 23px;
+    }
+
+    .page-layout {
+        display: flex;
+        flex-direction: column;
+        padding: 0 12px;
+    }
+
+    .sidebar, main, .advertisement {
+        width: 100%;
+    }
+
+    .sidebar {
+        order: 0;
+    }
+
+    main {
+        order: 1;
+    }
+
+    .advertisement {
+        order: 2;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    nav a {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header id="home">
+    <h1>Welcome to BotBridge</h1>
+    <p>Connecting Businesses with Smart Automation</p>
+</header>
+
+<nav aria-label="Main navigation">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#features">Features</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<div class="page-layout">
+
+    <aside class="sidebar">
+        <h3>Navigation</h3>
+        <a href="#home">Home</a>
+        <a href="#services">Our Services</a>
+        <a href="#features">Key Features</a>
+        <a href="#benefits">Benefits</a>
+        <a href="#about">About BotBridge</a>
+        <a href="#contact">Contact Us</a>
+    </aside>
+
+    <main id="services">
+
+        <section class="content-card">
+            <h2>Explore BotBridge</h2>
+
+            <p class="description">
+                BotBridge is a smart automation platform that helps
+                businesses connect with customers, automate tasks,
+                and improve communication through intelligent
+                chatbot solutions.
+            </p>
+
+            <div class="gallery">
+
+                <article class="gallery-item">
+                    <img src="Automation.png"
+                    alt="Business team collaborating">
+                    <h3>Business Automation</h3>
+                </article>
+
+                <article class="gallery-item">
+                    <img src="chatbot.jpg"
+                    alt="Artificial intelligence technology">
+                    <h3>AI Chatbots</h3>
+                </article>
+
+                <article class="gallery-item">
+                    <img src="team.jpg"
+                    alt="Team working together">
+                    <h3>Team Collaboration</h3>
+                </article>
+
+                <article class="gallery-item">
+                    <img src="smart.jpg"
+                    alt="Business data analytics">
+                    <h3>Smart Analytics</h3>
+                </article>
+
+                <article class="gallery-item">
+                    <img src="customer.jpg"
+                    alt="Digital communication">
+                    <h3>Customer Support</h3>
+                </article>
+
+                <article class="gallery-item">
+                    <img src="digital.jpg"
+                    alt="Global technology network">
+                    <h3>Digital Connectivity</h3>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="content-card" id="features">
+            <h2>Key Features of BotBridge</h2>
+
+            <p>
+                • Automated customer communication<br>
+                • Intelligent chatbot integration<br>
+                • Real-time customer assistance<br>
+                • Easy business workflow management<br>
+                • Improved productivity and efficiency<br>
+                • Centralized communication platform
+            </p>
+        </section>
+
+        <section class="content-card" id="benefits">
+            <h2>Why Choose BotBridge?</h2>
+
+            <p>
+                BotBridge reduces repetitive manual work,
+                saves time, improves customer engagement,
+                and helps businesses manage their daily
+                communication more efficiently.
+            </p>
+        </section>
+
+        <section class="content-card" id="about">
+            <h2>About BotBridge</h2>
+
+            <p>
+                BotBridge aims to simplify business communication
+                using modern automation technology. It provides
+                a bridge between businesses and customers through
+                smart digital solutions.
+            </p>
+        </section>
+
+    </main>
+
+    <aside class="advertisement">
+        <h3>BotBridge Updates</h3>
+
+        <div class="ad-box">
+            <div>
+                <strong>Work Smarter!</strong>
+                Automate your business communication
+                with intelligent chatbot technology.
+            </div>
+        </div>
+
+        <p>Smart Solutions for Modern Businesses</p>
+    </aside>
+
+</div>
+
+<footer id="contact">
+    <p>BotBridge - Smart Automation Platform</p>
+    <p>Connecting People • Automating Tasks • Improving Business</p>
+    <p>Contact: support@botbridge.com</p>
+</footer>
+
+</body>
+</html>
